@@ -5,9 +5,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LoginForm from './Login/LoginForm';
 import RegisterForm from './Register/RegisterForm';
 import Leaves from './GetLeavesFiltered/Leaves';
- import CalendarPage from './Calendar/CalendarPage';
+import CalendarPage from './Calendar/CalendarPage';
 
-// import EditLeaveScreen from './EditLeave/EditLeave';
+
 
 function App() {
   return (
@@ -18,9 +18,10 @@ function App() {
           <Route exact path="/" element={<LoginForm />}></Route>
           <Route path="/register" element={<RegisterForm />}></Route>
           <Route path="/leave" element={<LeaveForm />}></Route>
-          {/* <Route path="/editleave" element={<EditLeaveScreen />}></Route> */}
+          <Route path="/update/:id" element={<EditLeaveScreen />}></Route>
           <Route path="/listleaves" element={<Leaves />}></Route>
           <Route path="/calendar" element={<CalendarPage />}></Route>
+
         </Routes>
       </BrowserRouter>
     </div>

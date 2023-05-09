@@ -13,11 +13,14 @@ function LoginForm() {
     e.preventDefault();
 
    
-      const data = await login(email, password).then((data)=>
+       await login(email, password).then((data)=>
       {
         console.log(data);
-        localStorage.setItem('accessToken', data.access_token);
-        localStorage.setItem('refreshToken', data.refresh_token);
+        // localStorage.setItem('accessToken', data.user.access_token);
+        localStorage.setItem("loggedIn", JSON.stringify(data.access_token));
+        console.log(localStorage.getItem('loggedIn'));
+        // console.log(localStorage.getItem('accessToken'));
+        localStorage.setItem('refreshToken', JSON.stringify(data.refresh_token));
         history('/listleaves');
 
       });

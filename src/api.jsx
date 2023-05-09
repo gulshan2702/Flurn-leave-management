@@ -14,7 +14,7 @@ export const login = async (email, password) => {
       headers: {
         'Content-Type': 'application/json',
         apikey: supabaseApiKey,
-        // 'Authorization': 'Bearer token'
+        'Authorization': 'Bearer token'
       },
     });
 
@@ -32,7 +32,7 @@ export const register = async (email, password , name) => {
     }, {
       headers: {
         'Content-Type': 'application/json',
-        // 'Authorization': 'Bearer token',
+         'Authorization': 'Bearer token',
         apikey: supabaseApiKey,
       },
     })

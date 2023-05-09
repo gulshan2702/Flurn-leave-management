@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import GetLeavesFiltered from './GetLeavesFiltered.css'
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router";
 const Leaves = () => {
   const [leaves, setLeaves] = useState([]);
   const [filter, setFilter] = useState("lastMonth");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const history = useNavigate();
 
   useEffect(() => {
     const fetchLeaves = async () => {
@@ -81,6 +83,37 @@ const Leaves = () => {
 
     
   };
+
+  const handleUpdate = (id) => {
+    // Navigate to update page with id as prop
+    
+    history(`/update/${id}`);
+  };
+  const handleDelete = async(id) => {
+    console.log(`Deleting leave with id ${id}`);
+
+    await axios.delete(`https://zsrzpuksbzimwhxqlddb.supabase.co/rest/v1/leaves?id=eq.${id}`, 
+    
+    {
+    headers: {
+     'Content-Type': 'application/json',
+     apikey:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpzcnpwdWtzYnppbXdoeHFsZGRiIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODIzMzExNTUsImV4cCI6MTk5NzkwNzE1NX0._rMLleWycKDfDSj0P633reCR2j-_nlN-uTgLcO5MTsM',
+     //  'Authorization': 'Bearer token'
+   },
+ })
+ .then((response) => {
+   console.log(response);
+   // Clear form inputs on successful submission
+  
+   history('/listleaves');
+ })
+ .catch((error) => {
+   console.log(error);
+ });
+
+  }
+
+
   if (!leaves) {
     return <div>No leaves found.</div>;
   }
@@ -142,7 +175,8 @@ const Leaves = () => {
             <td>{val.start_date}</td>
             <td>{val.end_date}</td>
             <td>{val.reason}</td>
-            <td><button type ='button'>Edit</button></td>
+            <td><button type ='button'  onClick={() => handleUpdate(val.id)}>Update</button></td>
+            <td><button type ='button' onClick={() => handleDelete(val.id)}>Delete</button></td>
           </tr>
         );
       })
@@ -157,13 +191,13 @@ const Leaves = () => {
 
   <div className="button">
   <Link to = "/leave">
-  <button type="button" class="btn btn-primary btn-lg space-even">Apply Leave</button>
+  <button type="button" className="btn btn-primary btn-lg space-even">Apply Leave</button>
   </Link>
   <Link to = "/calendar">
-    <button type="button" class="btn btn-secondary btn-lg space-even">Calendar View</button>
+    <button type="button" className="btn btn-secondary btn-lg space-even">Calendar View</button>
     </Link>
     <Link to = "/">
-    <button type="button" class="btn btn-secondary btn-lg space-even">Logout</button>
+    <button type="button" class = "btn btn-secondary btn-lg space-even">Logout</button>
     </Link>
   </div>
   </>

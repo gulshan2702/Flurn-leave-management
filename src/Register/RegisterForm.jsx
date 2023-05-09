@@ -18,6 +18,10 @@ function RegisterForm() {
         await register(email, password, name).then((data)=> {
           console.log('2',data)
          console.log(data);
+         localStorage.setItem("loggedIn", JSON.stringify(data.access_token));
+         console.log(localStorage.getItem('loggedIn'));
+         // console.log(localStorage.getItem('accessToken'));
+         localStorage.setItem('refreshToken', JSON.stringify(data.refresh_token));
           history('/listleaves');
        
       });
