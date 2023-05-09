@@ -26,3 +26,5 @@ Calenar agenda Page
 Apply Leave Page
 
 ![ApplyLeave](https://user-images.githubusercontent.com/60569702/235300186-5dd0b6c4-371b-49d7-a92b-a69220c9f791.png)
+
+Update page ![image](https://github.com/gulshan2702/Flurn-leave-management/assets/60569702/1b61c212-9194-4a8b-8974-ebb32ab97558)
